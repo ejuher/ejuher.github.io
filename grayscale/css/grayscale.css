@@ -45,7 +45,7 @@ p {
 }
 
 a {
-    color: #219ab3;
+    color: #808BFF;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -54,7 +54,7 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #11505d;
+    color: #4E4EC5;
 }
 
 .light {
@@ -257,7 +257,7 @@ a:focus {
     width: 100%;
     padding: 50px 0;
     color: #fff;
-    background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
+    background: url(http://fc05.deviantart.net/fs70/f/2013/024/e/8/somewhere_far_away_by_wanyo-d5smnzt.png) no-repeat center center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -296,17 +296,17 @@ a:focus {
 }
 
 .btn-default {
-    border: 1px solid #219ab3;
-    color: #219ab3;
+    border: 1px solid #808BFF;
+    color: #808BFF;
     background-color: transparent;
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #219ab3;
+    border: 1px solid #808BFF;
     outline: 0;
     color: #000;
-    background-color: #219ab3;
+    background-color: #808BFF;
 }
 
 ul.banner-social-buttons {
