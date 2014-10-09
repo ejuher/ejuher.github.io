@@ -1,24 +1,11 @@
-body {
-	background-color: #ccc;
+.screenshot {
+	width: 300px;
 }
 
-.title {
-
+.project-title {
+	margin-bottom: 5px;
 }
 
-li.active a {
-	background: grey;
-}
-
-.main {
-	background: white;
-	border: black 3px solid;
-	border-radius: 5px;
-	padding: 0px;
-	min-height: 300px;
-}
-
-.tab-pane {
-	padding-left: 16px;
-	padding-right: 16px;
+.project-link {
+	margin-top: 2px;
 }
