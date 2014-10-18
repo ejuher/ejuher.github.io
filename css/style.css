@@ -2,15 +2,20 @@
 	text-shadow: 0px 0px 2px black;
 }
 
-.screenshot {
-	display: block;
-	margin: 0 auto;
+.project-li {
+	margin: 0px 20px;
+}
+
+.project-link {
+	margin-top: 2px;
 }
 
 .project-title {
 	margin-bottom: 5px;
 }
 
-.project-link {
-	margin-top: 2px;
+.screenshot {
+	border-radius: 6px;
+	display: block;
+	margin: 0 auto;
 }
