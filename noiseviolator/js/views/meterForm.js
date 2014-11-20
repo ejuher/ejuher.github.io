@@ -62,7 +62,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 		var level = soundMeter.instant.toFixed(2);
     $meter.val(level);
     $meterValue.text(level); 
-    this._updateTopViolations(level);
+    this._updateViolations(level);
 	},
 
 	_sendText: function() {
@@ -97,7 +97,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	  $meter = this.$el.find('meter');
 	  $meterValue = this.$el.find('.meter-value');
 
-	  setInterval(this.runMeter, 200);
+	  setInterval(this.runMeter.bind(this), 200);
 	},
 
 	render: function() {
