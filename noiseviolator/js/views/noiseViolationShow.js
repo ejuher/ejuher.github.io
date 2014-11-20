@@ -1,6 +1,6 @@
 NoiseViolator.Views.NoiseViolationShow = Backbone.View.extend({
 	template: _.template(
-		"<td><%= noiseViolation.output() %></td>" +
+		"<td><%= noiseViolation.escape('output') %></td>" +
 		"<td><%= noiseViolation.escape('time') %></td>"
 	),
 	tagName: "tr",

@@ -77,6 +77,9 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 			time: timestamp.toLocaleString() 
 		});
 		if (NoiseViolator.noiseViolations.length < 4) {
+			NoiseViolator.noiseViolations.add(violation);	
+		} else if (NoiseViolator.noiseViolations.isTopViolation(violation)) {
+			NoiseViolator.noiseViolations.pop();
 			NoiseViolator.noiseViolations.add(violation);			
 		}
 	},
@@ -90,8 +93,6 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 			this.violation = [];
 		}
 	},
-
-
 
 	successCallback: function(stream) {
 	  // Put variables in global scope to make them available to the browser console.
