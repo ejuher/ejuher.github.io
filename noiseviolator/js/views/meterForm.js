@@ -40,11 +40,10 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 
 	successCallback: function (stream) {
 	  // Put variables in global scope to make them available to the browser console.
-	  console.log('success');
 	  window.stream = stream;
 	  var soundMeter = window.soundMeter = new SoundMeter(window.audioContext);
 	  soundMeter.connectToSource(stream);
-
+	  debugger
 	  $meter = this.$el.find('meter');
 	  $meterValue = this.$el.find('.meter-value');
 
@@ -57,9 +56,8 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 
 	render: function() {
 		this.$el.html(this.template);
-		debugger
 		navigator.getUserMedia(
-			constraints, this.successCallback, this.errorCallback
+			constraints, this.successCallback.bind(this), this.errorCallback.bind(this)
 		);
 		return this;	
 	}
