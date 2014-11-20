@@ -43,14 +43,14 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	  window.stream = stream;
 	  var soundMeter = window.soundMeter = new SoundMeter(window.audioContext);
 	  soundMeter.connectToSource(stream);
-	  debugger
 	  $meter = this.$el.find('meter');
 	  $meterValue = this.$el.find('.meter-value');
 
 	  setInterval(function() {
 	  	console.log('running');
-	    $meter.val() = $meterValue.text() =
-	      soundMeter.instant.toFixed(2);
+	  	var level = soundMeter.instant.toFixed(2);
+	    $meter.val(level);
+	    $meterValue.text(level); 
 	  }, 200);
 	},
 
