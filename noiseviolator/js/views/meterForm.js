@@ -71,8 +71,10 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	_updateTopViolations: function() {
+		var timestamp = new Date();
 		var violation = new NoiseViolator.Models.NoiseViolation({ 
-			volume: this.violation 
+			volume: this.violation,
+			time: timestamp.toLocaleString() 
 		});
 		if (NoiseViolator.noiseViolations.length < 4) {
 			NoiseViolator.noiseViolations.add(violation);			
