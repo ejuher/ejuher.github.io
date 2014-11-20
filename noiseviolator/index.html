@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+	<title>NoiseViolator</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="content">
+		<div id="threshold-form">
+		</div>
+		<div class="dashboard">
+			<h3>Top Noise Violations</h3>
+			<div id="violations">
+			</div>
+		</div>
+	</div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/underscore.js"></script>
+	<script type="text/javascript" src="js/backbone.js"></script>
+	<script type="text/javascript" src="js/utils/compositeView.js"></script>
+	<script type="text/javascript" src="js/utils/soundmeter.js"></script>
+	<script type="text/javascript" src="js/application.js"></script>	
+	<script type="text/javascript" src="js/models/noiseViolation.js"></script>
+	<script type="text/javascript" src="js/collections/noiseViolations.js"></script>
+	<script type="text/javascript" src="js/views/noiseViolationShow.js"></script>
+	<script type="text/javascript" src="js/views/topNoiseViolations.js"></script>
+	<script type="text/javascript" src="js/views/meterForm.js"></script>
+	<script type="text/javascript" src="js/routers/noiseViolatorRouter.js"></script>
+	<script type="text/javascript" src="js/start.js"></script>
+</body>
+</html>
