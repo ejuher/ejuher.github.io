@@ -3,17 +3,37 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 		"<label for='cell-number'>Cellphone Number:</label>" +
 		"<input id='cell-number' type='tel'>" +
 		"<label for='threshold'>Threshold</label>" +
-		"<input type='range'>" +
+		"<input type='range' class='slider'><span class='slider-value'>0.5</span>" +
 		"<input type='submit'>" +
 		"<meter></meter><div class='meter-value'></div>"
 	),
 
 	className: 'threshold',
 
+	events: {
+		'mousedown .slider': 'updateSlider'
+	},
+
 	initialize: function() {
 		this._setContext();
 		this._setConstraints();
 		this._assignGetUserMedia();
+		this.threshold = 0.5;
+		this.violation = [];
+	},
+
+	updateSlider: function() {
+		console.log(this.threshold);
+		$sliderValue = this.$el.find('.slider-value');
+		var that = this;
+		$(window).mousemove(function() {
+			that._setThreshold();
+			$sliderValue.html(that.threshold);
+		});
+	},
+
+	_setThreshold: function() {
+		this.threshold = this.$el.find('.slider').val() / 100;
 	},
 
 	_setContext: function() {
@@ -34,11 +54,42 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	  navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 	},
 
-	errorCallback: function (error) {
+	errorCallback: function(error) {
 	  console.log('navigator.getUserMedia error: ', error);
 	},
 
-	successCallback: function (stream) {
+	runMeter: function() {
+		var level = soundMeter.instant.toFixed(2);
+    $meter.val(level);
+    $meterValue.text(level); 
+    this._updateTopViolations(level);
+	},
+
+	_sendText: function() {
+		console.log('send text');
+	},
+
+	_updateTopViolations: function() {
+		var violation = new NoiseViolator.Models.NoiseViolation({ 
+			volume: this.violation 
+		});
+		if (NoiseViolator.noiseViolations.length < 4) {
+			NoiseViolator.noiseViolations.add(violation);			
+		}
+	},
+
+	_updateViolations: function(level) {
+		if (level > this.threshold) {
+			this.violation.push(level);		
+		} else if (this.threshold.length > 4) {
+			this._sendText();
+			this._updateTopViolations();
+		}
+	},
+
+
+
+	successCallback: function(stream) {
 	  // Put variables in global scope to make them available to the browser console.
 	  window.stream = stream;
 	  var soundMeter = window.soundMeter = new SoundMeter(window.audioContext);
@@ -46,18 +97,15 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	  $meter = this.$el.find('meter');
 	  $meterValue = this.$el.find('.meter-value');
 
-	  setInterval(function() {
-	  	console.log('running');
-	  	var level = soundMeter.instant.toFixed(2);
-	    $meter.val(level);
-	    $meterValue.text(level); 
-	  }, 200);
+	  setInterval(this.runMeter, 200);
 	},
 
 	render: function() {
 		this.$el.html(this.template);
 		navigator.getUserMedia(
-			constraints, this.successCallback.bind(this), this.errorCallback.bind(this)
+			constraints, 
+			this.successCallback.bind(this), 
+			this.errorCallback.bind(this)
 		);
 		return this;	
 	}

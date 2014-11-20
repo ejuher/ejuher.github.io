@@ -18,6 +18,7 @@ NoiseViolator.Views.TopNoiseViolations = Backbone.CompositeView.extend({
 	},
 
 	addViolation: function(violation) {
+		console.log('view knows you added');
 		var violationView = new NoiseViolator.Views.noiseViolationShow({ model: feed });
 		this.addSubview("tbody", violationView);
 	},
