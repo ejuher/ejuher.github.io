@@ -82,9 +82,10 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	_updateViolations: function(level) {
 		if (level > this.threshold) {
 			this.violation.push(level);		
-		} else if (this.threshold.length > 4) {
+		} else if (this.violation.length > 4) {
 			this._sendText();
 			this._updateTopViolations();
+			this.violation = [];
 		}
 	},
 
