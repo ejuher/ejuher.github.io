@@ -59,6 +59,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	runMeter: function() {
+		console.log('runMeter');
 		var level = soundMeter.instant.toFixed(2);
     $meter.val(level);
     $meterValue.text(level); 
@@ -79,6 +80,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	_updateViolations: function(level) {
+		debugger
 		if (level > this.threshold) {
 			this.violation.push(level);		
 		} else if (this.threshold.length > 4) {

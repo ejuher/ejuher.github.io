@@ -13,13 +13,12 @@ NoiseViolator.Views.TopNoiseViolations = Backbone.CompositeView.extend({
 	),
 	tagName: "table",
 
-	intialize: function() {
+	initialize: function() {
 		this.listenTo(this.collection, 'add', this.addViolation); // may have to switch to rendering
 	},
 
 	addViolation: function(violation) {
-		console.log('view knows you added');
-		var violationView = new NoiseViolator.Views.noiseViolationShow({ model: feed });
+		var violationView = new NoiseViolator.Views.NoiseViolationShow({ model: violation });
 		this.addSubview("tbody", violationView);
 	},
 
