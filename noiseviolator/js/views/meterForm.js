@@ -49,7 +49,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 
 	  setInterval(function() {
 	  	console.log('running');
-	    meter.value = meterValue.innerText =
+	    $meter.val() = $meterValue.text() =
 	      soundMeter.instant.toFixed(2);
 	  }, 200);
 	},
