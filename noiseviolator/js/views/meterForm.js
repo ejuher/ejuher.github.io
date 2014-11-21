@@ -91,6 +91,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	_topAlert: function() {
+		var $table = $('table');
 		setTimeout(function() {
 			$table.removeClass('new-top-violation');
 		}, 2000);
@@ -99,10 +100,8 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 
 	_updateViolations: function(level) {
 		if (level > this.threshold) {
-			var $table = $('table');
 			this.violation.push(level);		
 		} else if (this.violation.length > 4) {
-			var $table = $('table');
 			this._violationAlert();
 			this._sendText();
 			this._updateTopViolations();
@@ -111,8 +110,9 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	_violationAlert: function() {
+		var that = this;
 		setTimeout(function() {
-			this.$el.find('.alert, .screen').fadeToggle(300);
+			that.$el.find('.alert, .screen').fadeToggle(300);
 		}, 300);
 		this.$el.find('.alert, .screen').fadeToggle(300);
 	},
