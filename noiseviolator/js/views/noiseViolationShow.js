@@ -1,9 +1,10 @@
-NoiseViolator.Views.NoiseViolationShow = Backbone.View.extend({
+NoiseViolator.Views.NoiseViolationShow = Backbone.CompositeView.extend({
 	template: _.template(
-		"<td><%= noiseViolation.escape('rank') %></td>" +
-		"<td><%= output ? === 0 '---' : noiseViolation.escape('output') %></td>" +
+		"<td></td>" +
+		"<td><%= noiseViolation.escape('output') === '0' ? '---' : '0' %></td>" +
 		"<td><%= noiseViolation.escape('time') %></td>"
 	),
+
 	tagName: "tr",
 
 	render: function () {
