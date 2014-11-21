@@ -1,8 +1,10 @@
 NoiseViolator.Models.NoiseViolation = Backbone.Model.extend({
 
 	initialize: function () {
-		var timestamp = new Date();
-		this.set('time', timestamp.toLocaleTimeString());
+		if (typeof this.get('time') === 'undefined') {
+			var timestamp = new Date();
+			this.set('time', timestamp.toLocaleTimeString());
+		}
 		this.set('output', this.calculateOutput());
 	},
 
@@ -12,6 +14,6 @@ NoiseViolator.Models.NoiseViolation = Backbone.Model.extend({
 		for (var i = 0, len = volumes.length; i < len; i++) {
 			output += Number(volumes[i]);
 		}
-		return output;
+		return output === 0 ? '---' : output;
 	}
 })

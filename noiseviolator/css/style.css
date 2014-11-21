@@ -29,19 +29,22 @@ button {
 	border-radius: 5px;
 	margin: 50px auto 0;
 	padding: 1em;
-	width: 400px;
+	width: 431px;
 }
 
 h3 {
 	display: inline-block;
-	margin: 0 auto;
+	margin: 0 0 .25em 0;
 	text-align: center;
 }
 
 label {
 	display: block;
-	font-size: .75em;
 	margin-bottom: .25em;
+}
+
+label, span {
+	font-size: 0.8em;
 }
 
 * + label {
@@ -58,14 +61,22 @@ meter {
 	width: 360px;
 }
 
+.slider-value {
+	position: relative;
+	top: -3px;
+}
+
 span {
-	font-size: .75em;
 	margin-left: 10px;
 }
 
 table {
 	margin: 0.5em auto;
 	border-collapse: collapse;
+}
+
+.table {
+	text-align: center;
 }
 
 tbody tr + tr {

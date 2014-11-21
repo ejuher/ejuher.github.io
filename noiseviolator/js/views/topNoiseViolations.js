@@ -8,9 +8,6 @@ NoiseViolator.Views.TopNoiseViolations = Backbone.CompositeView.extend({
 	 		"</tr>" +
 		"</thead>" +
 		"<tbody>" +
-			"<tr><td>1</td><td>---</td><td>---</td></tr>" +
-			"<tr><td>2</td><td>---</td><td>---</td></tr>" +
-			"<tr><td>3</td><td>---</td><td>---</td></tr>" +
 		"</tbody>" 
 	),
 	tagName: "table",
@@ -26,12 +23,15 @@ NoiseViolator.Views.TopNoiseViolations = Backbone.CompositeView.extend({
 
 	render: function () {
 		this.$el.html(this.template);
-		this.collection.each(this.addViolation.bind(this)); // pass ranking
+		this.collection.each(this.addViolation.bind(this)); 
+		this._setRanks();
 		return this;
 	},
 
-	addAndRender: function (violation) {
-		this.addViolation(violation);
-		this.render();
+	_setRanks: function () {
+		ranks = this.$el.find('tbody td:first-child');
+		for (var i = 0; i < 3; i++) {
+			ranks[i].innerHTML = i + 1;
+		}
 	}
 })

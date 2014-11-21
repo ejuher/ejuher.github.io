@@ -1,7 +1,17 @@
 NoiseViolator.Collections.NoiseViolations = Backbone.Collection.extend({
 	model: NoiseViolator.Models.NoiseViolation,
 
-	comparator: function(noiseViolation) {
+	initialize: function () {
+		for (var i = 1; i < 4; i++) {
+			var violation = new NoiseViolator.Models.NoiseViolation({
+				volume: [],
+				time: '---',
+			})
+			this.add(violation);
+		}
+	},
+
+	comparator: function (noiseViolation) {
 		return -noiseViolation.get('output');
 	},
 
