@@ -1,17 +1,23 @@
+.alert {
+	background: #ffb640;
+	bottom: 30px;
+	display: none;
+	font-weight: bold;
+	left: 151px;
+	padding: 15px;
+	position: absolute;
+}
+
 body {
 	background: #f5f5f5;
 	color: #565a5c;
 	font-family: sans-serif;
 }
 
-.button, #content, .pane {
+.alert, .button, #content, .pane {
 	border: 2px solid grey;
 	border-radius: 5px;
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-}
-
-* + .pane {
-	margin-top: 1em;
 }
 
 .button {
@@ -26,7 +32,12 @@ body {
 
 .pane {
 	background: #ccdeed;
+	position: relative;
 	padding: 1em;
+}
+
+* + .pane {
+	margin-top: 1em;
 }
 
 .contact-form input {
@@ -69,6 +80,19 @@ meter {
 	width: 360px;
 }
 
+.new-top-violation {
+	background-color: #ffb640;
+	border-radius: 5px;
+	transition: background-color 1s;
+}
+
+.screen {
+	background-color: rgba(200,200,200,0.5);
+	display: none;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+
 #slider {
 	margin: 0px;
 	width: 360px;
@@ -86,6 +110,7 @@ span {
 table {
 	margin: 0.5em auto;
 	border-collapse: collapse;
+	transition: background-color 1s;
 }
 
 .table {

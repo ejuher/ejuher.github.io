@@ -1,14 +1,15 @@
 NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	template: _.template(
 		"<div class='pane'>" + 
-		"<label for='cell-number'>Cellphone Number</label>" +
-		"<input id='cell-number' type='tel'><input type='button' value='Add Contact' class='button'>" +
+			"<label for='cell-number'>Cellphone Number</label>" +
+			"<input id='cell-number' type='tel'><input type='button' value='Add Contact' class='button'>" +
 		"</div>" +
 		"<div class='pane'>" +
-		"<label for='threshold'>Threshold</label>" +
-		"<input type='range' id='slider'><span class='slider-value'>0.5</span>" +
-		"<label>Sound Level</label>" +
-		"<meter></meter><span class='meter-value'>0.0</span>" +
+			"<label for='threshold'>Threshold</label>" +
+			"<input type='range' id='slider'><span class='slider-value'>0.5</span>" +
+			"<label>Sound Level</label>" +
+			"<meter></meter><span class='meter-value'>0.0</span>" +
+			"<div class='screen'><div class='alert'>VIOLATION!</div></div>" +
 		"</div>"
 	),
 
@@ -81,20 +82,39 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 		});
 		if (NoiseViolator.noiseViolations.length < 3) {
 			NoiseViolator.noiseViolations.add(violation);	
+			this._topAlert();
 		} else if (NoiseViolator.noiseViolations.isTopViolation(violation)) {
 			NoiseViolator.noiseViolations.pop();
-			NoiseViolator.noiseViolations.add(violation);			
+			NoiseViolator.noiseViolations.add(violation);		
+			this._topAlert();	
 		}
+	},
+
+	_topAlert: function() {
+		setTimeout(function() {
+			$table.removeClass('new-top-violation');
+		}, 2000);
+		$table.addClass('new-top-violation');
 	},
 
 	_updateViolations: function(level) {
 		if (level > this.threshold) {
+			var $table = $('table');
 			this.violation.push(level);		
 		} else if (this.violation.length > 4) {
+			var $table = $('table');
+			this._violationAlert();
 			this._sendText();
 			this._updateTopViolations();
 			this.violation = [];
 		}
+	},
+
+	_violationAlert: function() {
+		setTimeout(function() {
+			this.$el.find('.alert, .screen').fadeToggle(300);
+		}, 300);
+		this.$el.find('.alert, .screen').fadeToggle(300);
 	},
 
 	successCallback: function(stream) {
