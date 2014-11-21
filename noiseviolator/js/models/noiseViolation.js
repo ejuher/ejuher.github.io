@@ -6,7 +6,6 @@ NoiseViolator.Models.NoiseViolation = Backbone.Model.extend({
 			this.set('time', timestamp.toLocaleTimeString());
 		}
 		this.set('output', this.calculateOutput());
-		debugger
 	},
 
 	calculateOutput: function () {

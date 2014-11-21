@@ -1,7 +1,7 @@
 NoiseViolator.Views.NoiseViolationShow = Backbone.CompositeView.extend({
 	template: _.template(
 		"<td></td>" +
-		"<td><%= noiseViolation.escape('output') === '0' ? '---' : '0' %></td>" +
+		"<td><%= noiseViolation.escape('output') === '0' ? '---' : noiseViolation.escape('output') %></td>" +
 		"<td><%= noiseViolation.escape('time') %></td>"
 	),
 
