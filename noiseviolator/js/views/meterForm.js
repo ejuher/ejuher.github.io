@@ -28,7 +28,6 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	updateSlider: function() {
-		console.log(this.threshold);
 		$sliderValue = this.$el.find('.slider-value');
 		$meter = this.$el.find('meter');
 		var that = this;
@@ -66,7 +65,6 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	runMeter: function() {
-		console.log('runMeter');
 		var level = soundMeter.instant.toFixed(2);
     $meter.val(level);
     $meterValue.text(level); 
