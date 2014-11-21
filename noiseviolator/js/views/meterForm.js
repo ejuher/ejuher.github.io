@@ -8,7 +8,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 			"<label for='threshold'>Threshold</label>" +
 			"<input type='range' id='slider'><span class='slider-value'>0.5</span>" +
 			"<label>Sound Level</label>" +
-			"<meter></meter><span class='meter-value'>0.0</span>" +
+			"<meter optimum='0'></meter><span class='meter-value'>0.0</span>" +
 			"<div class='screen'><div class='alert'>VIOLATION!</div></div>" +
 		"</div>"
 	),
