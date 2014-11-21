@@ -2,7 +2,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	template: _.template(
 		"<div class='pane'>" + 
 		"<label for='cell-number'>Cellphone Number</label>" +
-		"<input id='cell-number' type='tel'><button type='button'>Add Contact</button>" +
+		"<input id='cell-number' type='tel'><input type='button' value='Add Contact' class='button'>" +
 		"</div>" +
 		"<div class='pane'>" +
 		"<label for='threshold'>Threshold</label>" +
@@ -16,6 +16,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 
 	events: {
 		'mousedown #slider': 'updateSlider'
+
 	},
 
 	initialize: function() {
@@ -29,10 +30,12 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	updateSlider: function() {
 		console.log(this.threshold);
 		$sliderValue = this.$el.find('.slider-value');
+		$meter = this.$el.find('meter');
 		var that = this;
 		$(window).mousemove(function() {
 			that._setThreshold();
 			$sliderValue.html(that.threshold);
+			$meter.attr('high', that.threshold);
 		});
 	},
 
