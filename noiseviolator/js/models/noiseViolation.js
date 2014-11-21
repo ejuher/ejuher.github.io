@@ -14,6 +14,6 @@ NoiseViolator.Models.NoiseViolation = Backbone.Model.extend({
 		for (var i = 0, len = volumes.length; i < len; i++) {
 			output += Number(volumes[i]);
 		}
-		return output === 0 ? '---' : output;
+		return output	
 	}
 })
