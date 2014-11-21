@@ -2,11 +2,15 @@ NoiseViolator.Views.TopNoiseViolations = Backbone.CompositeView.extend({
 	template: _.template(
 			"<thead>" +
 	 		"<tr>" +
-		 		"<td>Output</td>" +
-		 		"<td>Time</td>" +
+	 			"<td>Rank</td>" +
+		 		"<td>Volume Output</td>" +
+		 		"<td>Timestamp</td>" +
 	 		"</tr>" +
 		"</thead>" +
 		"<tbody>" +
+			"<tr><td>1</td><td>---</td><td>---</td></tr>" +
+			"<tr><td>2</td><td>---</td><td>---</td></tr>" +
+			"<tr><td>3</td><td>---</td><td>---</td></tr>" +
 		"</tbody>" 
 	),
 	tagName: "table",
@@ -22,7 +26,7 @@ NoiseViolator.Views.TopNoiseViolations = Backbone.CompositeView.extend({
 
 	render: function () {
 		this.$el.html(this.template);
-		this.collection.each(this.addViolation.bind(this)); 
+		this.collection.each(this.addViolation.bind(this)); // pass ranking
 		return this;
 	},
 

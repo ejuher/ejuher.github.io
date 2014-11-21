@@ -1,17 +1,21 @@
 NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	template: _.template(
-		"<label for='cell-number'>Cellphone Number:</label>" +
-		"<input id='cell-number' type='tel'>" +
+		"<div class='pane'>" + 
+		"<label for='cell-number'>Cellphone Number</label>" +
+		"<input id='cell-number' type='tel'><button type='button'>Add Contact</button>" +
+		"</div>" +
+		"<div class='pane'>" +
 		"<label for='threshold'>Threshold</label>" +
-		"<input type='range' class='slider'><span class='slider-value'>0.5</span>" +
-		"<input type='submit'>" +
-		"<meter></meter><div class='meter-value'></div>"
+		"<input type='range' id='slider'><span class='slider-value'>0.5</span>" +
+		"<label>Sound Level</label>" +
+		"<meter></meter><span class='meter-value'>0.0</span>" +
+		"</div>"
 	),
 
-	className: 'threshold',
+	className: 'dashboard',
 
 	events: {
-		'mousedown .slider': 'updateSlider'
+		'mousedown #slider': 'updateSlider'
 	},
 
 	initialize: function() {
@@ -33,7 +37,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	_setThreshold: function() {
-		this.threshold = this.$el.find('.slider').val() / 100;
+		this.threshold = this.$el.find('#slider').val() / 100;
 	},
 
 	_setContext: function() {
@@ -71,12 +75,10 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	},
 
 	_updateTopViolations: function() {
-		var timestamp = new Date();
 		var violation = new NoiseViolator.Models.NoiseViolation({ 
 			volume: this.violation,
-			time: timestamp.toLocaleString() 
 		});
-		if (NoiseViolator.noiseViolations.length < 4) {
+		if (NoiseViolator.noiseViolations.length < 3) {
 			NoiseViolator.noiseViolations.add(violation);	
 		} else if (NoiseViolator.noiseViolations.isTopViolation(violation)) {
 			NoiseViolator.noiseViolations.pop();

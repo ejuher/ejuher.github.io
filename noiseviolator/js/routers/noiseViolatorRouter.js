@@ -1,7 +1,7 @@
 NoiseViolator.Routers.NoiseViolatorRouter = Backbone.Router.extend({
 	initialize: function(options) {
 		NoiseViolator.noiseViolations = new NoiseViolator.Collections.NoiseViolations();
-		NoiseViolator.threshold = $('.slider').val();
+		NoiseViolator.threshold = $('#slider').val();
 
 		this.$threshold = options.$threshold;
 		this.$tbody = options.$tbody;
