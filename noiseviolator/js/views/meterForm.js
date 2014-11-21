@@ -113,7 +113,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 		var that = this;
 		setTimeout(function() {
 			that.$el.find('.alert, .screen').fadeToggle(300);
-		}, 300);
+		}, 600);
 		this.$el.find('.alert, .screen').fadeToggle(300);
 	},
 
