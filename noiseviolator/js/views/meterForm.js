@@ -1,23 +1,14 @@
 NoiseViolator.Views.MeterForm = Backbone.View.extend({
 	template: _.template(
-		"<div class='pane'>" + 
-			"<label for='cell-number'>Cellphone Number</label>" +
-			"<input id='cell-number' type='tel'><input type='button' value='Add Contact' class='button'>" +
-		"</div>" +
-		"<div class='pane'>" +
-			"<label for='threshold'>Threshold</label>" +
-			"<input type='range' id='slider'><span class='slider-value'>0.5</span>" +
-			"<label>Sound Level</label>" +
-			"<meter optimum='0'></meter><span class='meter-value'>0.0</span>" +
-			"<div class='screen'><div class='alert'>VIOLATION!</div></div>" +
-		"</div>"
+		"<label for='threshold'>Threshold</label>" +
+		"<input type='range' id='slider'><span class='slider-value'>0.5</span>" +
+		"<label>Sound Level</label>" +
+		"<meter optimum='0'></meter><span class='meter-value'>0.0</span>" +
+		"<div class='screen'><div class='alert'>VIOLATION!</div></div>" 
 	),
-
-	className: 'dashboard',
 
 	events: {
 		'mousedown #slider': 'updateSlider'
-
 	},
 
 	initialize: function() {

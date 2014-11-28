@@ -3,6 +3,7 @@ NoiseViolator.Routers.NoiseViolatorRouter = Backbone.Router.extend({
 		NoiseViolator.noiseViolations = new NoiseViolator.Collections.NoiseViolations();
 		NoiseViolator.threshold = $('#slider').val();
 
+		this.$artist = options.$artist;
 		this.$threshold = options.$threshold;
 		this.$tbody = options.$tbody;
 	},
@@ -12,10 +13,12 @@ NoiseViolator.Routers.NoiseViolatorRouter = Backbone.Router.extend({
 	},
 
 	index: function() {
+		var artistView = new NoiseViolator.Views.ArtistForm();
 		var thresholdView = new NoiseViolator.Views.MeterForm();
 		var violationsView = new NoiseViolator.Views.TopNoiseViolations({
 			collection: NoiseViolator.noiseViolations
 		});
+		this._swapViews(this.$artist, artistView);
 		this._swapViews(this.$threshold, thresholdView);
 		this._swapViews(this.$tbody, violationsView);
 	},
