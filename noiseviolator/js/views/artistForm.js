@@ -3,8 +3,9 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 		"<form>" +
 			"<label for='artist-name'>Artist Name</label>" +
 			"<input id='artist-name'><input type='submit' value='Find Artist' class='button'>" + 
-		"</form>"
-
+		"</form>" +
+		"<div class='current-artist'>" +
+		"</div>"
 	),
 
 	events: {
@@ -15,6 +16,7 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 		event.preventDefault();
 		var artistName = this.$el.find('#artist-name').val();
 		this.$el.find('#artist-name').val('');
+		// spinner
 		$.ajax({
 			url: 'http://ws.audioscrobbler.com/2.0/',
 			dataType: 'json',
@@ -26,8 +28,13 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 				format: 'json'
 			},
 			success: function(data) {
-				console.log('success');
-			}
+				// debugger
+				// spinner off
+				var artistName = data.artist.name;
+				var imgUrl = data.artist.image[3]['#text'];
+				var summary = data.artist.bio.summary; 
+				this.$el.find('.current-artist').html("<img src='" + imgUrl + "'>");
+			}.bind(this)
 		})
 		console.log(artistName);
 	},

@@ -51,6 +51,12 @@ body {
 	width: 433px;
 }
 
+.current-artist {
+	left: 480px;
+	position: absolute;
+	top: 0px;
+}
+
 h3 {
 	display: inline-block;
 	margin: 0 0 .25em 0;
