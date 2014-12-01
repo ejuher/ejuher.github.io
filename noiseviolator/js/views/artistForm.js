@@ -1,7 +1,7 @@
 NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 	template: _.template(
 		"<form>" +
-			"<label for='artist-name'>Artist Name</label>" +
+			"<label for='artist-name'>Artist/Group Name</label>" +
 			"<input id='artist-name'><input type='submit' value='Find Artist' class='button'>" + 
 		"</form>" +
 		"<div class='current-artist'>" +
@@ -16,6 +16,7 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 		event.preventDefault();
 		var artistName = this.$el.find('#artist-name').val();
 		this.$el.find('#artist-name').val('');
+		this.$el.find('.current-artist').hide();
 		// spinner
 		$.ajax({
 			url: 'http://ws.audioscrobbler.com/2.0/',
@@ -33,7 +34,8 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 				var artistName = data.artist.name;
 				var imgUrl = data.artist.image[3]['#text'];
 				var summary = data.artist.bio.summary; 
-				this.$el.find('.current-artist').html("<img src='" + imgUrl + "'>");
+				this.$el.find('.current-artist').html("<img src='" + imgUrl + "'>").fadeIn(600);
+				// would be preferable to wait for image to load before toggling in
 			}.bind(this)
 		})
 		console.log(artistName);

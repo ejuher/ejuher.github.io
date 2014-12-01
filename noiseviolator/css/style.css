@@ -14,7 +14,7 @@ body {
 	font-family: sans-serif;
 }
 
-.alert, .button, #content, .pane {
+.alert, .button, #content, .pane, .current-artist {
 	border: 2px solid grey;
 	border-radius: 5px;
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
@@ -52,9 +52,16 @@ body {
 }
 
 .current-artist {
-	left: 480px;
+	display: none;
+	left: 468px;
 	position: absolute;
 	top: 0px;
+}
+
+.current-artist img {
+	border-radius: 5px;
+	margin: 10px;
+	vertical-align: bottom;
 }
 
 h3 {
