@@ -63,10 +63,6 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
     this._updateViolations(level);
 	},
 
-	_sendText: function() {
-		console.log('send text');
-	},
-
 	_updateTopViolations: function() {
 		var violation = new NoiseViolator.Models.NoiseViolation({ 
 			volume: this.violation,
@@ -94,7 +90,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 			this.violation.push(level);		
 		} else if (this.violation.length > 4) {
 			this._violationAlert();
-			this._sendText();
+			this.trigger('violation');
 			this._updateTopViolations();
 			this.violation = [];
 		}
@@ -102,10 +98,11 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 
 	_violationAlert: function() {
 		var that = this;
+		var $alertAndScreen = this.$el.find('.alert, .screen');
 		setTimeout(function() {
-			that.$el.find('.alert, .screen').fadeToggle(300);
+			$alertAndScreen.fadeToggle(300);
 		}, 600);
-		this.$el.find('.alert, .screen').fadeToggle(300);
+		$alertAndScreen.fadeToggle(300);
 	},
 
 	successCallback: function(stream) {

@@ -26,7 +26,27 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 		this._accessLastFMApi();
 	},
 
+	artistViolationNote: function(event, date) {
+		if (typeof this.artistName != 'undefined') {
+			var $artistViolationNote = $("<div class='artist-violation-note'></div>").html(this._errorMessage);
 
+
+			setTimeout(function() {
+				$artistViolationNote.fadeToggle(300);
+			}, 3000);
+			$artistViolationNote.fadeToggle(300);
+		}
+	},
+
+	_errorMessage: function() {
+		var date = new Date;
+		return this.summary + 
+			' and ' +
+			'this.artistName' + 
+			' knows that you have committed a noise violation at ' +
+			date.toLocaleString() + 
+			'.';
+	},
 
 	render: function() {
 		this.$el.html(this.template);
@@ -52,12 +72,10 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 		if (typeof data.artist.name != 'undefined') {
 			this.artistName = data.artist.name;
 			var imgUrl = data.artist.image[3]['#text'];
-			this.summary = data.artist.bio.summary; 
+			this.summary = data.artist.bio.summary.split('. ', 1)[0].trim(); 
 			this.$el.find('.current-artist').html("<img src='" + imgUrl + "'>").fadeIn(600);			
+		} else {
+			delete this.artistName;
 		}
 	},
-
-	// one method that sets the picture
-	// alert method could always be attached. 
-	  // when run, it first must check if an artist has been defined.
 })
