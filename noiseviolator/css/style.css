@@ -55,7 +55,7 @@ body {
 	display: none;
 	left: 468px;
 	position: absolute;
-	top: 0px;
+	top: -2px;
 }
 
 .current-artist img {

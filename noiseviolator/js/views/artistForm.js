@@ -9,40 +9,55 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 	),
 
 	events: {
-		'submit form': 'setArtist'
+		'submit    form'            : 'setArtist',
+		'violation .current-artist' : 'artistViolationNote'
 	},
 
 	setArtist: function() {
 		event.preventDefault();
-		var artistName = this.$el.find('#artist-name').val();
-		this.$el.find('#artist-name').val('');
+
+		// reset input field
+		var $inputField = this.$el.find('#artist-name');
+		this.artistName = $inputField.val();
+		$inputField.val('');
+		
 		this.$el.find('.current-artist').hide();
-		// spinner
+
+		this._accessLastFMApi();
+	},
+
+
+
+	render: function() {
+		this.$el.html(this.template);
+		return this;
+	},
+
+	_accessLastFMApi: function() {
 		$.ajax({
 			url: 'http://ws.audioscrobbler.com/2.0/',
 			dataType: 'json',
 			data: {
 				method: 'artist.getinfo',
-				artist: artistName,
+				artist: this.artistName,
 				autocorrect: 1,
 				api_key: 'f33b1bdb4bead8c686120d81d2baa09b',
 				format: 'json'
 			},
-			success: function(data) {
-				// debugger
-				// spinner off
-				var artistName = data.artist.name;
-				var imgUrl = data.artist.image[3]['#text'];
-				var summary = data.artist.bio.summary; 
-				this.$el.find('.current-artist').html("<img src='" + imgUrl + "'>").fadeIn(600);
-				// would be preferable to wait for image to load before toggling in
-			}.bind(this)
-		})
-		console.log(artistName);
+			success: this._setPicture.bind(this)
+		});
 	},
 
-	render: function() {
-		this.$el.html(this.template);
-		return this;
-	}
+	_setPicture: function(data) {
+		if (typeof data.artist.name != 'undefined') {
+			this.artistName = data.artist.name;
+			var imgUrl = data.artist.image[3]['#text'];
+			this.summary = data.artist.bio.summary; 
+			this.$el.find('.current-artist').html("<img src='" + imgUrl + "'>").fadeIn(600);			
+		}
+	},
+
+	// one method that sets the picture
+	// alert method could always be attached. 
+	  // when run, it first must check if an artist has been defined.
 })
