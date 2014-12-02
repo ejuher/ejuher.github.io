@@ -69,7 +69,7 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 	},
 
 	_setPicture: function(data) {
-		if (typeof data.artist.name != 'undefined') {
+		if (typeof data.artist != 'undefined') {
 			this.artistName = data.artist.name;
 			var imgUrl = data.artist.image[3]['#text'];
 			this.summary = data.artist.bio.summary.split('. ', 1)[0].trim(); 
