@@ -90,7 +90,7 @@ NoiseViolator.Views.MeterForm = Backbone.View.extend({
 			this.violation.push(level);		
 		} else if (this.violation.length > 4) {
 			this._violationAlert();
-			this.trigger('violation');
+			$('.current-artist').trigger('violation');
 			this._updateTopViolations();
 			this.violation = [];
 		}

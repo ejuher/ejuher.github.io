@@ -27,13 +27,14 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 	},
 
 	artistViolationNote: function(event, date) {
+		console.log('triggered');
 		if (typeof this.artistName != 'undefined') {
-			var $artistViolationNote = $("<div class='artist-violation-note'></div>").html(this._errorMessage);
-
+			var $artistViolationNote = this.$el.find('.artist-violation-note');
+			$artistViolationNote.hide().html(this._errorMessage());
 
 			setTimeout(function() {
 				$artistViolationNote.fadeToggle(300);
-			}, 3000);
+			}, 10000);
 			$artistViolationNote.fadeToggle(300);
 		}
 	},
@@ -42,7 +43,7 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 		var date = new Date;
 		return this.summary + 
 			' and ' +
-			'this.artistName' + 
+			this.artistName + 
 			' knows that you have committed a noise violation at ' +
 			date.toLocaleString() + 
 			'.';
@@ -73,7 +74,7 @@ NoiseViolator.Views.ArtistForm = Backbone.View.extend({
 			this.artistName = data.artist.name;
 			var imgUrl = data.artist.image[3]['#text'];
 			this.summary = data.artist.bio.summary.split('. ', 1)[0].trim(); 
-			this.$el.find('.current-artist').html("<img src='" + imgUrl + "'>").fadeIn(600);			
+			this.$el.find('.current-artist').html("<img src='" + imgUrl + "'><div class='artist-violation-note'></div>").fadeIn(600);			
 		} else {
 			delete this.artistName;
 		}

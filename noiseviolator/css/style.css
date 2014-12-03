@@ -9,9 +9,10 @@
 }
 
 .artist-violation-note {
-	display: hidden;
-	left: 468px;
-	position: absolute;
+	display: none;
+	margin-top: 1em;
+	padding: 1em;
+	position: absolute; 
 }
 
 body {
@@ -20,7 +21,7 @@ body {
 	font-family: sans-serif;
 }
 
-.alert, .button, #content, .pane, .current-artist {
+.alert, .button, #content, .pane, .current-artist, .artist-violation-note {
 	border: 2px solid grey;
 	border-radius: 5px;
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
